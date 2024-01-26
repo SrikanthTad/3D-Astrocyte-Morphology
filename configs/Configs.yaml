@@ -1,0 +1,26 @@
+DEVICE: cuda
+MODELS_DIR: saved_models/
+DATASETS_DIR: datasets/
+OUTPUT_DIR: output/test
+VISUALIZE_FRUSTUM_SLICES: False # True, False
+DETECTOR:
+  NAME: CellDet_FasterRCNN_Base
+DATA:
+  OIB_PATH: input/cup1_20x_1.oib
+  BRIGHTNESS_NORMALIZER: 900. # Set to 4095 to use the original data
+SEGMENTATION:
+  SIZE: 192
+  N_INPUT_CHANNEL: 3
+  N_CLASSES: 3
+  ASTROCYTES:
+    ARCHITECTURE: unet
+    ENCODER_NAME: resnet34
+    WEIGHTS: lightning_logs_astro/version_0/checkpoints/epoch=45-step=736.ckpt
+  NUCLEI:
+    ARCHITECTURE: unet++
+    ENCODER_NAME: resnet50
+    WEIGHTS: lightning_logs_nuclei/version_0/checkpoints/epoch=141-step=4118.ckpt
+  KCORE:
+    ENABLE: False # True, False
+    K: 5 # k value of the K-core [>=26 all vertices will be removed]
+  MIN_PIXELS_PER_BRANCH: 10
