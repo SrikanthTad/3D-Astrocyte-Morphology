@@ -8,3 +8,5 @@ Run 'python run_model.py'
 
 Generated output folder houses all results per slice.
 Contacenate with FIJI
+
+![Screenshot](output_result.png)
